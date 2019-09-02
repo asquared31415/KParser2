@@ -54,7 +54,7 @@ namespace KParser.Conversion
                 for (var i = 0; i < elementCountHistogram[name]; i++)
                 {
                     IdMap.Add($"{name}_{i}", id++);
-                    Console.WriteLine($"{name}_{i} : {id - 1}");
+                    //Console.WriteLine($"{name}_{i} : {id - 1}");
                 }
         }
 

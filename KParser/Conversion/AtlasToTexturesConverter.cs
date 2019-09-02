@@ -32,7 +32,7 @@ namespace KParser.Conversion
             foreach (var frame in symbol.FramesList)
             {
                 var name = BuildFile.BuildData.HashToName[symbol.Hash] + '_' + frame.SourceFrameNum;
-                Console.WriteLine(name);
+                //Console.WriteLine(name);
                 if (nameToBitmap.ContainsKey(name))
                 {
                     Console.WriteLine($"Warning: symbol {name} was defined more than once!");

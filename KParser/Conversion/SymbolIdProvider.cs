@@ -54,7 +54,7 @@ namespace KParser.Conversion
                 for (var i = 0; i < symbolCountHistogram[name]; i++)
                 {
                     IdMap.Add($"bone_{name}_{i}", id++);
-                    Console.WriteLine($"bone_{name}_{i} : {id - 1}");
+                    //Console.WriteLine($"bone_{name}_{i} : {id - 1}");
                 }
         }
 
