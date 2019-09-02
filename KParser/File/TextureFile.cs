@@ -14,7 +14,10 @@ namespace KParser.File
         public TextureFile(string outDir, Dictionary<string, Bitmap> nameToBitmap)
         {
             if (!Directory.Exists(outDir))
-                throw new ArgumentException($"The directory specified at {outDir} does not exist!");
+            {
+                Directory.CreateDirectory(outDir);
+                Console.WriteLine($"The directory specified at {outDir} does not exist!  Creating...");
+            }
 
             OutDir = outDir;
             NameToBitmap = nameToBitmap;

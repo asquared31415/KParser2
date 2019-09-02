@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using KParser.Conversion;
 using KParser.File;
 
@@ -13,20 +14,25 @@ namespace KParser
             var stopWatch = new Stopwatch();
             stopWatch.Start();
 
-            var animFiles = new List<AnimFiles>
+            var animFiles = new List<AnimFiles>();
+            try
             {
-                new AnimFiles
+                animFiles.Add(new AnimFiles
                 {
                     Atlas = new AtlasFile("../../../TestAnims/oilfloater_0.png"),
                     Build = new BuildFile("../../../TestAnims/oilfloater_build.bytes"),
-                    Anim = new AnimFile("../../../TestAnims/oilfloater_anim.bytes")
-                }
-            };
+                    Anim = new AnimFile("../../../TestAnims/oilfloater_anim.bytes"),
+                    OutDir = "../../../TestAnims/out/oilfloater"
+                });
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             foreach (var anim in animFiles)
             {
-                var converter = new KAnimToScmlConverter(anim.Atlas, anim.Build, anim.Anim, "../../../TestAnims/out/",
-                    "slickster.scml");
+                var converter = new KAnimToScmlConverter(anim.Atlas, anim.Build, anim.Anim, anim.OutDir, Path.GetFileNameWithoutExtension(anim.Atlas.FilePath) + ".scml");
                 converter.GetTexturesFile().WriteFile();
                 converter.GetScmlFile().WriteFile();
             }
@@ -42,5 +48,6 @@ namespace KParser
         public AtlasFile Atlas;
         public BuildFile Build;
         public AnimFile Anim;
+        public string OutDir;
     }
 }

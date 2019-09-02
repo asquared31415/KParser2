@@ -12,7 +12,7 @@ namespace KParser.File
         public AtlasFile(string filePath)
         {
             if (!System.IO.File.Exists(filePath))
-                throw new FileNotFoundException($"The file at {filePath} does not exist!");
+                throw new FileNotFoundException($"[ERROR] The atlas file at {filePath} does not exist!");
 
             FilePath = filePath;
             Atlas = new Bitmap(FilePath);

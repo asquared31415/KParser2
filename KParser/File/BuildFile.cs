@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using KParser.Build;
 
 namespace KParser.File
@@ -15,7 +16,7 @@ namespace KParser.File
         public BuildFile(string filePath)
         {
             if (!System.IO.File.Exists(filePath))
-                Console.WriteLine($"Warning: the file at {filePath} already exists! Overwriting...");
+                throw new FileNotFoundException($"[ERROR] The anim file at {filePath} does not exist!");
             FilePath = filePath;
             BuildData = Parser.LoadFile(filePath);
         }
